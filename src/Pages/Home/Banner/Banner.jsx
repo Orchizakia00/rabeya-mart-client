@@ -1,14 +1,41 @@
+import { delay, motion } from "framer-motion";
 
 
 const Banner = () => {
     return (
-        <div className="hero min-h-[calc(100vh-70px)]" style={{ backgroundImage: 'url(https://i.ibb.co/ryKNg1z/there-is-shopping-cart-filled-with-vegetables-eggs-generative-ai-958165-28846.jpg)' }}>
-            <div className="hero-overlay bg-white bg-opacity-30"></div>
+        <div className="hero min-h-[calc(100vh-70px)]" style={{ backgroundImage: 'url(https://i.ibb.co/8MNvXDh/banner.jpg)' }}>
+            <div className="hero-overlay  bg-opacity-50"></div>
             <div className="hero-content text-center text-neutral-content">
                 <div className="">
-                    <h1 className="mb-5 text-4xl font-bold text-black">Fresh Picks: Quality Groceries Delivered</h1>
-                    <p className="mb-5 text-black text-xl font-semibold">Discover freshness at Fresh Picks Market – your destination for quality groceries, from farm to table!</p>
-                    <button className="btn btn-secondary text-white">Get Started</button>
+                    <motion.h1
+                        initial={{ x: -1500 }}
+                        animate={{ x: 0 }}
+                        transition={{
+                            duration: "2",
+                            delay: "1"
+                        }}
+
+                        className="mb-5 text-4xl font-bold">
+                        Fresh Picks: Quality Groceries Delivered
+                    </motion.h1>
+                    <motion.p
+                        initial={{ x: -1500 }}
+                        animate={{ x: 0 }}
+                        transition={{
+                            duration: "2",
+                            delay: "1"
+                        }}
+                        className="mb-5 text-lg">
+                        Discover freshness at Fresh Picks Market – your destination <br /> for quality groceries, from farm to table!
+                    </motion.p>
+                    <motion.button 
+                        initial={{ y: 1500 }}
+                        animate={{ y: 0 }}
+                        transition={{
+                            duration: "2",
+                            delay: "1"
+                        }}
+                    className="btn btn-secondary text-white">Get Started</motion.button>
                 </div>
             </div>
         </div>
