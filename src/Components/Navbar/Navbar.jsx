@@ -12,13 +12,13 @@ const Navbar = () => {
 
     const navLinks = <>
         <NavLink to={'/'}>
-            <li><a className={isActive('/') ? 'bg-base-300 rounded-md font-semibold' : 'font-semibold'}>Home</a></li>
+            <li><a className={isActive('/') ? 'bg-base-300 rounded-md font-semibold mr-2' : 'font-semibold mr-2'}>Home</a></li>
         </NavLink>
         <NavLink to={'/allProducts'}>
-            <li><a className={isActive('/allProducts') ? 'bg-base-300 rounded-md font-semibold' : 'font-semibold'}>All Products</a></li>
+            <li><a className={isActive('/allProducts') ? 'bg-base-300 rounded-md font-semibold mr-2' : 'font-semibold mr-2'}>All Products</a></li>
         </NavLink>
         <NavLink to={'/'}>
-            <li><a className={isActive('/categories') ? 'bg-base-300 rounded-md font-semibold' : 'font-semibold'}>Categories</a></li>
+            <li><a className={isActive('/categories') ? 'bg-base-300 rounded-md font-semibold mr-2' : 'font-semibold mr-2'}>Categories</a></li>
         </NavLink>
     </>
 
