@@ -1,7 +1,48 @@
+import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 const Register = () => {
+    const { createUser } = useAuth();
+    const navigate = useNavigate();
+
+    const handleRegister = (event) => {
+        event.preventDefault();
+
+        const form = event.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        const user = {
+            name,
+            email,
+            password
+        }
+        console.log(user);
+
+        // password validation
+        // if (password.length < 6) {
+        //     toast.error('Password should be at least 6 characters or longer!');
+        //     return;
+        // }
+        // else if (!(/[A-Z]/.test(password) && /[!@#$%^&*(),.?":{}|<>]/.test(password))) {
+        //     toast.error('Your password should have at least one uppercase letter and a special character.');
+        //     return;
+        // }
+
+        createUser(email, password)
+            .then(result => {
+                console.log(result.user);
+                navigate('/');
+                toast.success('You have successfully registered!');
+            })
+            .catch(error => {
+                console.error(error);
+            })
+    }
+
     return (
         <div className="flex my-10 w-[1200px] mx-auto bg-white">
             <div className="flex-1">
@@ -9,24 +50,24 @@ const Register = () => {
             </div>
             <div className="mt-10 flex-1">
                 <h2 className="text-5xl text-center font-bold">Register Now</h2>
-                <form className="card-body mt-10">
+                <form onSubmit={handleRegister} className="card-body mt-10">
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Name</span>
                         </label>
-                        <input type="text" placeholder="name" className="input input-bordered" required />
+                        <input type="text" placeholder="Your Name" name="name" className="input input-bordered" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Email</span>
                         </label>
-                        <input type="email" placeholder="email" className="input input-bordered" required />
+                        <input type="email" placeholder="Your Email" name="email" className="input input-bordered" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Password</span>
                         </label>
-                        <input type="password" placeholder="password" className="input input-bordered" required />
+                        <input type="password" placeholder="Password" name="password" className="input input-bordered" required />
                         <label className="label">
                             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                         </label>
@@ -36,7 +77,7 @@ const Register = () => {
                         <button className="btn mt-5"><FcGoogle></FcGoogle> Sign up with Google</button>
                     </div>
                 </form>
-                <p className="text-center">Already have an account? Please <Link to={'/login'}><span className="text-pink-600 font-bold">Login</span></Link></p>
+                <p className="text-center mb-4">Already have an account? Please <Link to={'/login'}><span className="text-pink-600 font-bold">Login</span></Link></p>
             </div>
         </div>
     );
