@@ -66,10 +66,9 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to={'/login'}><a className="mr-5">Login</a></Link>
 
                 {
-                    user ? <a className="btn">Logout</a> : <Link to={'/login'}><a className="btn">Login</a></Link>
+                    user ? <a className="mr-5">Logout</a> : <Link to={'/login'}><a className="btn">Login</a></Link>
                 }
                 <label className="swap swap-rotate">
 

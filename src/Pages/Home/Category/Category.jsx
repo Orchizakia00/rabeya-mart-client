@@ -7,6 +7,7 @@ import slider1 from '../../../assets/categories/rice.jpg'
 import slider2 from '../../../assets/categories/produce.jpg'
 import slider3 from '../../../assets/categories/dairy.jpg'
 import slider4 from '../../../assets/categories/spices.jpg'
+import slider12 from '../../../assets/categories/baking.jpg'
 import slider5 from '../../../assets/categories/personal.jpg'
 import slider6 from '../../../assets/categories/bevarages.jpg'
 import slider7 from '../../../assets/categories/pasta.jpg'
@@ -46,6 +47,10 @@ const Category = () => {
                 <SwiperSlide>
                     <img src={slider4} className='h-[500px]' alt="" />
                     <h2 className='text-center font-bold text-2xl'>Spices</h2>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <img src={slider12} className='h-[500px]' alt="" />
+                    <h2 className='text-center font-bold text-2xl'>Baking</h2>
                 </SwiperSlide>
                 <SwiperSlide>
                     <img src={slider5} className='h-[500px]' alt="" />
