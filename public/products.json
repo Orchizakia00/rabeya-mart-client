@@ -1,6 +1,5 @@
 [
     {
-        "id": 1,
         "productName": "Onion",
         "category": "Produce",
         "quantity": "1kg",
@@ -11,7 +10,6 @@
         "img": "https://i.ibb.co/FmLCYj6/onion-5187140-640.jpg"
     },
     {
-        "id": 2,
         "productName": "Garlic",
         "category": "Produce",
         "quantity": "1kg",
@@ -22,7 +20,6 @@
         "img": "https://i.ibb.co/dGBHyY2/garlic-1238337-640.jpg"
     },
     {
-        "id": 3,
         "productName": "Ginger",
         "category": "Produce",
         "quantity": "1kg",
@@ -33,7 +30,6 @@
         "img": "https://i.ibb.co/1s4Cvyv/ginger-1960613-640.jpg"
     },
     {
-        "id": 4,
         "productName": "Potatoes",
         "category": "Produce",
         "quantity": "1kg",
@@ -44,7 +40,6 @@
         "img": "https://i.ibb.co/7ktGztF/potato-72254-640.jpg"
     },
     {
-        "id": 5,
         "productName": "DIPLOMA Instant Full Cream Milk Powder",
         "category": "Dairy",
         "quantity": "250g",
@@ -55,7 +50,6 @@
         "img": "https://i.ibb.co/58qmZ0W/diploma-milk-powder.jpg"
     },
     {
-        "id": 6,
         "productName": "ACI Pure Salt",
         "category": "Spices",
         "quantity": "500g",
@@ -66,7 +60,6 @@
         "img": "https://i.ibb.co/d2c2Bx4/aci-salt.jpg"
     },
     {
-        "id": 7,
         "productName": "RIN Detergent",
         "category": "Cleaning Supplies",
         "quantity": "500g",
@@ -77,7 +70,6 @@
         "img": "https://i.ibb.co/BjXQ5bJ/rin.jpg"
     },
     {
-        "id": 8,
         "productName": "Ghari Washing Powder",
         "category": "Cleaning Supplies",
         "quantity": "500g",
@@ -88,7 +80,6 @@
         "img": "https://i.ibb.co/fHwhpDS/ghari.jpg"
     },
     {
-        "id": 9,
         "productName": "Fresh Sugar",
         "category": "Baking",
         "quantity": "1kg",
@@ -99,7 +90,6 @@
         "img": "https://i.ibb.co/FKjTKTJ/fresh-sugar.jpg"
     },
     {
-        "id": 10,
         "productName": "No. 1 Refined Sugar",
         "category": "Baking",
         "quantity": "1kg",

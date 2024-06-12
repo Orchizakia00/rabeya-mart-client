@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 const useProducts = () => {
 
-    // const axiosPublic = useAxiosPublic();
     const [products, setProducts] = useState();
 
     useEffect(() => {

@@ -68,7 +68,7 @@ const Navbar = () => {
             <div className="navbar-end">
 
                 {
-                    user ? <a className="mr-5">Logout</a> : <Link to={'/login'}><a className="btn">Login</a></Link>
+                    user ? <a className="mr-5 cursor-pointer btn btn-ghost">Logout</a> : <Link to={'/login'}><a className="mr-5 cursor-pointer btn btn-ghost">Login</a></Link>
                 }
                 {/* <div> */}
                     {/* for theme */}
