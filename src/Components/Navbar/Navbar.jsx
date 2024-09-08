@@ -2,6 +2,8 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/logo/logo.png"
 // import { useEffect, useState } from "react";
 import useAuth from "../../Hooks/useAuth";
+import { FaCartPlus } from "react-icons/fa";
+
 
 
 const Navbar = () => {
@@ -66,6 +68,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
+            <a className="mr-5 cursor-pointer btn btn-ghost"> <FaCartPlus color="#ff8629" /> Cart</a>
 
                 {
                     user ? <a className="mr-5 cursor-pointer btn btn-ghost">Logout</a> : <Link to={'/login'}><a className="mr-5 cursor-pointer btn btn-ghost">Login</a></Link>
