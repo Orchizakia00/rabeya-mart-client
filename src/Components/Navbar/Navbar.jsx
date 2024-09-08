@@ -68,7 +68,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-            <a className="mr-5 cursor-pointer btn btn-ghost"> <FaCartPlus color="#ff8629" /> Cart</a>
+            <Link to={'/cart'}><a className="mr-5 cursor-pointer btn btn-ghost"> <FaCartPlus color="#fa6e02" /> Cart</a></Link>
 
                 {
                     user ? <a className="mr-5 cursor-pointer btn btn-ghost">Logout</a> : <Link to={'/login'}><a className="mr-5 cursor-pointer btn btn-ghost">Login</a></Link>
