@@ -17,6 +17,9 @@ const ProductCard = ({ product }) => {
                     toast.success("Product added to cart!");
                     // reset();
                 }
+                else {
+                    console.log("Something went wrong! Please try again.");
+                }
             })
     
 
