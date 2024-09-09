@@ -41,10 +41,18 @@ const Cart = () => {
                 ))
             }
 
+            {
+                cart.length === 0 ? (
+                    <div className="flex justify-center items-center text-xl min-h-[calc(100vh-300px)]">
+                        Your cart is empty
+                    </div>
+                ) : (
+                    <div className="flex justify-end mt-10">
+                        <button className="btn btn-outline text-white hover:text-orange-600 bg-orange-600 hover:bg-white border-white hover:border-orange-600">Place Order</button>
+                    </div>
+                )
+            }
 
-            <div className="flex justify-end mt-10">
-                <button className="btn btn-outline text-white hover:text-orange-600 bg-orange-600 hover:bg-white border-white hover:border-orange-600">Place Order</button>
-            </div>
 
         </div>
     );
