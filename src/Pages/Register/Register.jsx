@@ -2,10 +2,12 @@ import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Register = () => {
-    const { createUser } = useAuth();
+    const { createUser, updateUserProfile } = useAuth();
     const navigate = useNavigate();
+    const axios = useAxiosPublic();
 
     const handleRegister = (event) => {
         event.preventDefault();
@@ -33,14 +35,30 @@ const Register = () => {
         // }
 
         createUser(email, password)
-            .then(result => {
-                console.log(result.user);
-                navigate('/');
-                toast.success('You have successfully registered!');
-            })
+                        .then(result => {
+                            const loggedUser = result.user;
+                            console.log(loggedUser);
+                            updateUserProfile(user.name)
+                                .then(() => {
+                                    console.log('user profile updated successfully');
+                                    const userInfo = {
+                                        name: user.name,
+                                        email: user.email,
+                                    }
+                                    axios.post('/users', userInfo)
+                                        .then(res => {
+                                            console.log(res.data);
+                                            if (res.data.insertedId) {
+                                                toast.success('User Created Successfully!')
+                                                navigate('/')
+                                            }
+                                        })
+                                })
+                        })
             .catch(error => {
                 console.error(error);
-            })
+            });
+
     }
 
     return (

@@ -3,11 +3,13 @@ import logo from "../../assets/logo/logo.png"
 // import { useEffect, useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import { FaCartPlus } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 
 
 const Navbar = () => {
     const location = useLocation();
+    const {logOut} = useAuth();
 
     const isActive = (path) => {
         return location.pathname === path;
@@ -47,6 +49,15 @@ const Navbar = () => {
     //     document.querySelector("html").setAttribute("data-theme", localTheme);
     // }, [theme]);
 
+    const handleLogout = () => {
+        logOut()
+            .then(res => {
+                console.log(res)
+                toast.success('Logged Out Successfully!')
+            })
+            .catch(err => console.log(err))
+    }
+
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
@@ -71,7 +82,7 @@ const Navbar = () => {
             <Link to={'/cart'}><a className="mr-5 cursor-pointer btn btn-ghost"> <FaCartPlus color="#fa6e02" /> Cart</a></Link>
 
                 {
-                    user ? <a className="mr-5 cursor-pointer btn btn-ghost">Logout</a> : <Link to={'/login'}><a className="mr-5 cursor-pointer btn btn-ghost">Login</a></Link>
+                    user ? <a onClick={handleLogout} className="mr-5 cursor-pointer btn btn-ghost">Logout</a> : <Link to={'/login'}><a className="mr-5 cursor-pointer btn btn-ghost">Login</a></Link>
                 }
                 {/* <div> */}
                     {/* for theme */}
