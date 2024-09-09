@@ -1,5 +1,6 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/logo/logo.png"
+import userImg from "../../assets/logo/user-icon.png"
 // import { useEffect, useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import { FaCartPlus } from "react-icons/fa";
@@ -79,7 +80,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to={'/cart'}><a className="mr-5 cursor-pointer btn btn-ghost"> <FaCartPlus color="#fa6e02" /> Cart</a></Link>
+                <Link to={'/cart'}><a className="mr-1 cursor-pointer btn btn-ghost"> <FaCartPlus color="#fa6e02" /> Cart</a></Link>
 
                 {
                     user ?
@@ -88,7 +89,7 @@ const Navbar = () => {
                                 <div className="w-10 rounded-full">
                                     {
                                         user.photoURL === null || undefined ? (
-                                            <img alt="User Avatar" src="https://ibb.co.com/fF2DHKR" />
+                                            <img alt="User Avatar" src={userImg} />
                                         ) : (
                                             <img alt="User Avatar" src={user.photoURL} />
                                         )
