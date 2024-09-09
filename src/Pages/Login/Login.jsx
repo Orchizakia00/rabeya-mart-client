@@ -6,7 +6,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 
 const Login = () => {
-    const { signInUser, setError, signInWithGoogle } = useAuth();
+    const { login, setError, signInWithGoogle } = useAuth();
     const axios = useAxiosPublic();
     const navigate = useNavigate();
 
@@ -16,7 +16,7 @@ const Login = () => {
         const password = e.target.password.value;
         console.log(email, password);
 
-        signInUser(email, password)
+        login(email, password)
             .then(result => {
                 console.log(result.user);
                 navigate('/');
@@ -64,13 +64,13 @@ const Login = () => {
                         <label className="label">
                             <span className="label-text">Email</span>
                         </label>
-                        <input type="email" placeholder="email" className="input input-bordered" required />
+                        <input type="email" placeholder="email" name="email" className="input input-bordered" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Password</span>
                         </label>
-                        <input type="password" placeholder="password" className="input input-bordered" required />
+                        <input type="password" placeholder="password" name="password" className="input input-bordered" required />
                         <label className="label">
                             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                         </label>
