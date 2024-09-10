@@ -2,15 +2,25 @@ import toast from "react-hot-toast";
 import { FaCartPlus } from "react-icons/fa";
 import { FaBan } from "react-icons/fa";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import useAuth from "../../../Hooks/useAuth";
 
 
 const ProductCard = ({ product }) => {
     const axiosPublic = useAxiosPublic();
+    const user = useAuth();
+    // console.log('point', user);
+    const loggedInUser = user.user;
+    const userEmail= loggedInUser.email;
 
     const handleAddToCart = (product) => {
-        // console.log(product);
+        // console.log('product',product);
+        const cartItem = {
+            ...product, 
+            userEmail
+        };
+        console.log('object', cartItem);
         // toast.success("Product added to cart!");
-        axiosPublic.post('/cart', product)
+        axiosPublic.post('/cart', cartItem)
             .then(res => {
                 console.log(res.data);
                 if (res.data.insertedId) {
@@ -21,8 +31,6 @@ const ProductCard = ({ product }) => {
                     console.log("Something went wrong! Please try again.");
                 }
             })
-    
-
     };
 
     return (
