@@ -2,15 +2,19 @@ import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../Components/Shared/SectionTitle/SectionTitle";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { FaTrashAlt } from "react-icons/fa";
+import useAuth from "../../Hooks/useAuth";
 
 const Cart = () => {
 
     const axios = useAxiosPublic();
+    const user = useAuth();
+    const userEmail = user.user.email;
+
 
     const { data: cart = [] } = useQuery({
         queryKey: ['cart'],
         queryFn: async () => {
-            const res = await axios.get(`/cart`);
+            const res = await axios.get(`/cart?userEmail=${userEmail}`);
             return res.data;
         }
     });
