@@ -3,22 +3,25 @@ import { FaCartPlus } from "react-icons/fa";
 import { FaBan } from "react-icons/fa";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import useAuth from "../../../Hooks/useAuth";
+import useCart from "../../../Hooks/useCart";
 
 
 const ProductCard = ({ product }) => {
     const axios = useAxiosPublic();
     const user = useAuth();
     // console.log('point', user);
-    const loggedInUser = user.user;
-    const userEmail = loggedInUser.email;
+    const loggedInUser = user?.user;
+    const userEmail = loggedInUser?.email;
+    const { data: cart = [] } = useCart(); 
+    console.log(cart);
 
     const handleAddToCart = (product) => {
-        // console.log('product',product);
+       
         const cartItem = {
             ...product,
             userEmail
         };
-        toast.success("Product added to cart!");
+        
         axios.post('/cart', cartItem)
             .then(res => {
                 console.log(res.data);
@@ -30,7 +33,7 @@ const ProductCard = ({ product }) => {
                     console.log("Something went wrong! Please try again.");
                 }
             })
-        
+
 
     };
 
@@ -41,7 +44,7 @@ const ProductCard = ({ product }) => {
             </figure>
             <div className="card-body text-center">
                 <h2 className="text-xl font-semibold">{product.productName} ({product.quantity})</h2>
-                <p className="text-lg">৳ {product.price}</p>
+                <p className="text-lg">৳ {product.price} Tk</p>
                 <p></p>
                 <div className="card-actions">
                     {
