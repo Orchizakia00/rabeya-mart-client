@@ -7,9 +7,7 @@ const Cart = () => {
     const cart = useCart();
 
     const subtotal = cart.reduce((acc, product) => acc + product.price, 0);
-
     const deliveryCharge = 50;
-
     const totalPrice = subtotal + deliveryCharge;
 
     return (

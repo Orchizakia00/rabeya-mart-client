@@ -2,20 +2,12 @@
 
 import ProductCard from "../../Components/Shared/ProductCard/ProductCard";
 import SectionTitle from "../../Components/Shared/SectionTitle/SectionTitle";
-import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import useProducts from "../../Hooks/useProducts";
 
 const AllProducts = () => {
 
-    const axiosPublic = useAxiosPublic();
 
-    const { data: products = [] } = useQuery({
-        queryKey: ['products'],
-        queryFn: async () => {
-            const res = await axiosPublic.get('/products');
-            return res.data;
-        }
-    });
+    const products = useProducts();
 
 
     return (
