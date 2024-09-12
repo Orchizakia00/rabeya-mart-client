@@ -3,7 +3,7 @@ import { FaCartPlus } from "react-icons/fa";
 import { FaBan } from "react-icons/fa";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import useAuth from "../../../Hooks/useAuth";
-import useCart from "../../../Hooks/useCart";
+// import useCart from "../../../Hooks/useCart";
 
 
 const ProductCard = ({ product }) => {
@@ -12,16 +12,18 @@ const ProductCard = ({ product }) => {
     // console.log('point', user);
     const loggedInUser = user?.user;
     const userEmail = loggedInUser?.email;
-    const { data: cart = [] } = useCart(); 
-    console.log(cart);
 
     const handleAddToCart = (product) => {
-       
+
         const cartItem = {
-            ...product,
+            productId: product._id,
+            productName: product.productName,
+            price: product.price,
+            quantity: product.quantity,
+            img: product.img,
             userEmail
         };
-        
+
         axios.post('/cart', cartItem)
             .then(res => {
                 console.log(res.data);
@@ -33,8 +35,6 @@ const ProductCard = ({ product }) => {
                     console.log("Something went wrong! Please try again.");
                 }
             })
-
-
     };
 
     return (
