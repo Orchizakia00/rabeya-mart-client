@@ -11,34 +11,31 @@ const ProductCard = ({ product }) => {
     const user = useAuth();
     const loggedInUser = user?.user;
     const userEmail = loggedInUser?.email;
-    const cart = useCart();
+    const [cart, refetch] = useCart();
 
     const handleAddToCart = (product) => {
         const cartItem = {
             productId: product._id,
             productName: product.productName,
             price: product.price,
-            quantity: product.quantity,
+            quantity: 1,
             img: product.img,
             userEmail
         };
-        console.log('cartItem', cartItem);
-        console.log('cart', cart);
-
-        // const isItemInCart = cart.some(item => item.productId === cartItem.productId);
-        // console.log('isItemInCart', isItemInCart);
 
         const existingCartItem = cart.find(item => item.productId === cartItem.productId);
 
         if (existingCartItem) {
             const updatedCartItem = {
                 ...existingCartItem,
-                quantity: existingCartItem.quantity + 1 // Increment quantity by 1
+                quantity: existingCartItem.quantity + 1
             };
-            axios.put(`/cart/${existingCartItem._id}`, { quantity: updatedCartItem.quantity }) // Pass only the new quantity
+
+            axios.put(`/cart/${existingCartItem._id}`, { quantity: updatedCartItem.quantity })
                 .then(res => {
                     console.log(res.data);
                     toast.success("Cart updated successfully!");
+                    refetch();
                 })
                 .catch(err => {
                     console.error(err);
@@ -50,6 +47,7 @@ const ProductCard = ({ product }) => {
                     console.log(res.data);
                     if (res.data.insertedId) {
                         toast.success("Product added to cart!");
+                        refetch();
                     } else {
                         console.log("Something went wrong! Please try again.");
                     }
@@ -60,6 +58,7 @@ const ProductCard = ({ product }) => {
                 });
         }
     };
+
 
     return (
         <div className="card w-96 bg-white shadow-xl">

@@ -37,8 +37,10 @@ const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+        const unSubscribe = onAuthStateChanged(auth, currentUser => {
+            setLoading(false);
             setUser(currentUser);
+            console.log('current user', currentUser);
             // if (currentUser) {
             //     // get token
             //     const userInfo = { email: currentUser.email };
@@ -53,13 +55,9 @@ const AuthProvider = ({ children }) => {
             //     // remove token
             //     localStorage.removeItem('access-token');
             // }
-            setLoading(false);
         });
-
-        return () => {
-            return unsubscribe();
-        }
-    }, []);
+        return () => { unSubscribe() }
+    }, [])
 
 
     const logOut = () => {
