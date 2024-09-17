@@ -25,15 +25,17 @@ const ProductCard = ({ product }) => {
         console.log('cartItem', cartItem);
         console.log('cart', cart);
 
-        const isItemInCart = cart.some(item => item.productId === cartItem.productId);
-        console.log('isItemInCart', isItemInCart);        
+        // const isItemInCart = cart.some(item => item.productId === cartItem.productId);
+        // console.log('isItemInCart', isItemInCart);
 
-        if (isItemInCart === true) {
+        const existingCartItem = cart.find(item => item.productId === cartItem.productId);
+
+        if (existingCartItem) {
             const updatedCartItem = {
-                ...isItemInCart,
-                quantity: isItemInCart.quantity + 1 // Increment quantity by 1
+                ...existingCartItem,
+                quantity: existingCartItem.quantity + 1 // Increment quantity by 1
             };
-            axios.put(`/cart/${ isItemInCart._id }`, updatedCartItem) // Use existingCartItem's ID
+            axios.put(`/cart/${existingCartItem._id}`, { quantity: updatedCartItem.quantity }) // Pass only the new quantity
                 .then(res => {
                     console.log(res.data);
                     toast.success("Cart updated successfully!");
@@ -42,8 +44,7 @@ const ProductCard = ({ product }) => {
                     console.error(err);
                     toast.error("Failed to update cart.");
                 });
-        } else 
-        {
+        } else {
             axios.post('/cart', cartItem)
                 .then(res => {
                     console.log(res.data);
