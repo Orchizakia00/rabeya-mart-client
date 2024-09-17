@@ -17,9 +17,14 @@ const ProductCard = ({ product }) => {
         const cartItem = {
             productId: product._id,
             productName: product.productName,
+            category: product.category,
+            brandName: product.brandName,
+            popularity: product.popularity,
+            availability: product.availability,
             price: product.price,
-            quantity: 1,
+            size: product.size,
             img: product.img,
+            quantity: 1,
             userEmail
         };
 
@@ -66,7 +71,7 @@ const ProductCard = ({ product }) => {
                 <img src={product.img} alt={product.productName} className="rounded-xl h-[200px]" />
             </figure>
             <div className="card-body text-center">
-                <h2 className="text-xl font-semibold">{product.productName} ({product.quantity})</h2>
+                <h2 className="text-xl font-semibold">{product.productName} ({product?.size})</h2>
                 <p className="text-lg">৳ {product.price} Tk</p>
                 <p></p>
                 <div className="card-actions">

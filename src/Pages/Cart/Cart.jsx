@@ -1,14 +1,99 @@
 import SectionTitle from "../../Components/Shared/SectionTitle/SectionTitle";
-import { FaTrashAlt } from "react-icons/fa";
+import { FaMinus, FaPlus, FaTrashAlt } from "react-icons/fa";
 import useCart from "../../Hooks/useCart";
+import toast from "react-hot-toast";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Cart = () => {
 
-    const cart = useCart();
+    const [cart, refetch] = useCart();
+    const axios = useAxiosPublic();
 
-    const subtotal = cart.reduce((acc, product) => acc + product.price, 0);
+    const subtotal = cart.reduce((acc, product) => acc + product.price * product.quantity, 0);
     const deliveryCharge = 50;
     const totalPrice = subtotal + deliveryCharge;
+
+    const handleMinus = (product) => {
+        const updatedCartItem = {
+            ...product,
+            quantity: product.quantity - 1
+        };
+
+        axios.put(`/cart/${product._id}`, { quantity: updatedCartItem.quantity })
+            .then(res => {
+                console.log(res.data);
+                toast.success("Cart updated successfully!");
+                refetch();
+            })
+            .catch(err => {
+                console.error(err);
+                toast.error("Failed to update cart.");
+            });
+    }
+
+    const handlePlus = (product) => {
+        const updatedCartItem = {
+            ...product,
+            quantity: product.quantity + 1
+        };
+
+        axios.put(`/cart/${product._id}`, { quantity: updatedCartItem.quantity })
+            .then(res => {
+                console.log(res.data);
+                toast.success("Cart updated successfully!");
+                refetch();
+            })
+            .catch(err => {
+                console.error(err);
+                toast.error("Failed to update cart.");
+            });
+    }
+
+    const handleRemove = (productId) => {
+
+        toast.custom((t) => (
+            <div
+                className={`${t.visible ? 'animate-enter' : 'animate-leave'
+                    } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+            >
+                <div className="flex-1 w-0 p-4">
+                    <div className="flex items-start">
+                        <div className="ml-3 flex-1">
+                            <p className="mt-1 text-sm text-gray-500">
+                                Are you sure you want to delete?
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div className="flex border-l border-gray-200">
+                    <button
+                        onClick={() => {
+                            toast.dismiss(t.id);
+                            axios.delete(`/cart/${productId}`)
+                                .then(res => {
+                                    console.log(res.data);
+                                    toast.success("Product removed from cart!");
+                                    refetch();
+                                })
+                                .catch(err => {
+                                    console.error(err);
+                                    toast.error("Failed to remove product from cart.");
+                                });
+                        }}
+                        className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    >
+                        Yes
+                    </button>
+                    <button
+                        onClick={() => toast.dismiss(t.id)}
+                        className="w-full border border-transparent rounded-none p-4 flex items-center justify-center text-sm font-medium text-gray-600 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                    >
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        ));
+    }
 
     return (
         <div className="min-h-screen">
@@ -31,20 +116,21 @@ const Cart = () => {
                                                 src={product.img}
                                                 alt={product.productName} />
                                         </figure>
-                                        <div className="card-body">
-                                            <h2 className="card-title">{product.productName}</h2>
-                                            <p>Price: {product.price} TK</p>
-                                            <div className="card-actions justify-end items-center">
-                                                <p className="flex justify-end text-lg">{product.quantity}</p>
-                                                <button><FaTrashAlt /></button>
+                                        <div className="pl-6 pt-16 pr-28">
+                                            <h2 className="card-title mb-6">{product.productName} - {product.size}</h2>
+                                            <p className="mb-14">Price: {product.price} TK</p>
+                                            <div className="flex justify-items-end gap-4">
+                                                <button onClick={() => handleMinus(product)} className="p-2 bg-gray-200 rounded-lg"><FaMinus color="#fa6e02" /></button>
+                                                <p className="text-xl">{product.quantity}</p>
+                                                <button onClick={() => handlePlus(product)} className="p-2 bg-gray-200 rounded-lg"><FaPlus color="#fa6e02" /></button>
                                             </div>
+                                            <button onClick={() => handleRemove(product._id)} className="mt-6"><FaTrashAlt color="#fa6e02" /></button>
                                         </div>
                                     </div>
                                 ))
                             }
                         </div>
                         {
-
                             <div className="bg-white py-8 px-6 shadow rounded-lg h-fit">
                                 <p className="text-center text-xl font-semibold mb-6">Order Summary</p>
                                 <p className="flex justify-between gap-20">Subtotal ({cart.length} items): <span>{subtotal} BDT</span></p>
