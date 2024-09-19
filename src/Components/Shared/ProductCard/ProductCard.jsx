@@ -4,6 +4,7 @@ import { FaBan } from "react-icons/fa";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import useAuth from "../../../Hooks/useAuth";
 import useCart from "../../../Hooks/useCart";
+import { useNavigate } from "react-router-dom";
 
 
 const ProductCard = ({ product }) => {
@@ -12,8 +13,16 @@ const ProductCard = ({ product }) => {
     const loggedInUser = user?.user;
     const userEmail = loggedInUser?.email;
     const [cart, refetch] = useCart();
+    const navigate = useNavigate();
 
     const handleAddToCart = (product) => {
+
+        if (!loggedInUser) {
+            toast.error("Please login to add items to cart.");
+            navigate('/login');
+            return;
+        }
+
         const cartItem = {
             productId: product._id,
             productName: product.productName,
