@@ -1,5 +1,4 @@
 import toast from "react-hot-toast";
-import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
@@ -92,7 +91,7 @@ const Register = () => {
                     </div>
                     <div className="form-control mt-6">
                         <button className="btn btn-secondary text-white">Register</button>
-                        <button className="btn mt-5"><FcGoogle></FcGoogle> Sign up with Google</button>
+                        
                     </div>
                 </form>
                 <p className="text-center mb-4">Already have an account? Please <Link to={'/login'}><span className="text-pink-600 font-bold">Login</span></Link></p>
