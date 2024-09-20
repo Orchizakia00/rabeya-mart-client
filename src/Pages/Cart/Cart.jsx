@@ -13,22 +13,23 @@ const Cart = () => {
     const deliveryCharge = 50;
     const totalPrice = subtotal + deliveryCharge;
 
-    const handleMinus = (product) => {
-        const updatedCartItem = {
-            ...product,
-            quantity: product.quantity - 1
-        };
+    const handleMinus = (product) => { 
 
-        axios.put(`/cart/${product._id}`, { quantity: updatedCartItem.quantity })
-            .then(res => {
-                console.log(res.data);
-                toast.success("Cart updated successfully!");
-                refetch();
-            })
-            .catch(err => {
-                console.error(err);
-                toast.error("Failed to update cart.");
-            });
+            const updatedCartItem = {
+                ...product,
+                quantity: product.quantity - 1
+            };
+
+            axios.put(`/cart/${product._id}`, { quantity: updatedCartItem.quantity })
+                .then(res => {
+                    console.log(res.data);
+                    toast.success("Cart updated successfully!");
+                    refetch();
+                })
+                .catch(err => {
+                    console.error(err);
+                    toast.error("Failed to update cart.");
+                });
     }
 
     const handlePlus = (product) => {
@@ -120,7 +121,11 @@ const Cart = () => {
                                             <h2 className="card-title mb-6">{product.productName} - {product.size}</h2>
                                             <p className="mb-14">Price: {product.price} TK</p>
                                             <div className="flex justify-items-end gap-4">
-                                                <button onClick={() => handleMinus(product)} className="p-2 bg-gray-200 rounded-lg"><FaMinus color="#fa6e02" /></button>
+                                                {
+                                                    product.quantity === 1 ? 
+                                                    <button onClick={() => handleMinus(product)} disabled className="p-2 bg-gray-200 rounded-lg"><FaMinus color="#fa6e02" /></button> :
+                                                    <button onClick={() => handleMinus(product)} className="p-2 bg-gray-200 rounded-lg"><FaMinus color="#fa6e02" /></button>
+                                                }
                                                 <p className="text-xl">{product.quantity}</p>
                                                 <button onClick={() => handlePlus(product)} className="p-2 bg-gray-200 rounded-lg"><FaPlus color="#fa6e02" /></button>
                                             </div>
