@@ -20,7 +20,7 @@ import SectionTitle from '../../../Components/Shared/SectionTitle/SectionTitle';
 
 const Category = () => {
     return (
-        <div className='my-16'>
+        <div className='my-16 w-[1200px] mx-auto'>
             <SectionTitle heading={'Complete Shopping'} subHeading={'Fresh, Quality, Convenience'}></SectionTitle>
 
             <Swiper

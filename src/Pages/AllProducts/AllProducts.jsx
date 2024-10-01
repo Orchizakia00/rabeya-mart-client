@@ -6,9 +6,7 @@ import useProducts from "../../Hooks/useProducts";
 
 const AllProducts = () => {
 
-
     const products = useProducts();
-
 
     return (
         <div className="">
