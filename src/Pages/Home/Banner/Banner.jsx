@@ -5,7 +5,7 @@ const Banner = () => {
     return (
         <div className="hero min-h-[calc(100vh-70px)] w-full" style={{ backgroundImage: `url(${banner})` }}>
             {/* <div className="hero-overlay  bg-opacity-50"></div> */}
-            <div className="hero-content text-center text-neutral-content">
+            <div className="-mr-[500px] text-right text-white">
                 <div className="">
                     <motion.h1
                         initial={{ x: -1500 }}
@@ -16,7 +16,7 @@ const Banner = () => {
                         }}
 
                         className="mb-5 text-4xl font-bold">
-                        Fresh Picks: Quality Groceries Delivered
+                        From Our Aisles to Your Door
                     </motion.h1>
                     <motion.p
                         initial={{ x: -1500 }}
