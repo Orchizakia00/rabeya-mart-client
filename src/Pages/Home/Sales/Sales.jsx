@@ -13,7 +13,7 @@ const Sales = () => {
             <div className="bg-opacity-20"></div>
             <div className="text-black text-right">
                 <div className="mr-10">
-                    <h1 className="mb-10 text-4xl font-bold">Exclusive Offers</h1>
+                    <h1 className="text-orange-600 mb-10 text-4xl font-bold">Exclusive Offers</h1>
                     <p className="mb-5 text-2xl max-w-lg space-y-4">
                         Enjoy up to <span className='text-orange-600 font-bold'>30%</span> off on fresh fruits and vegetables. Stock up on healthy essentials and save more today!
                     </p>
