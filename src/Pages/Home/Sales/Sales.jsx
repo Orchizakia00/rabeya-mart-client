@@ -3,7 +3,7 @@ import sales from '../../../assets/sales/sales.jpg'
 const Sales = () => {
     return (
         <div
-            className="min-h-screen flex items-center justify-end my-14"
+            className="min-h-[calc(100vh-90px)] flex items-center justify-end my-14"
             style={{
                 backgroundImage: `url(${sales})`,
                 backgroundSize: '110%', // Zoom out effect by increasing the size
