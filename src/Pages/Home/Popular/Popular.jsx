@@ -5,7 +5,7 @@ import useProducts from '../../../Hooks/useProducts'
 const Popular = () => {
 
     const products = useProducts();
-    console.log(products);
+    // console.log(products);
 
     return (
         <div className=''>

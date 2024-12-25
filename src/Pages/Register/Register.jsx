@@ -34,26 +34,28 @@ const Register = () => {
         // }
 
         createUser(email, password)
-                        .then(result => {
-                            const loggedUser = result.user;
-                            console.log(loggedUser);
-                            updateUserProfile(user.name)
-                                .then(() => {
-                                    console.log('user profile updated successfully');
-                                    const userInfo = {
-                                        name: user.name,
-                                        email: user.email,
-                                    }
-                                    axios.post('/users', userInfo)
-                                        .then(res => {
-                                            console.log(res.data);
-                                            if (res.data.insertedId) {
-                                                toast.success('User Created Successfully!')
-                                                navigate('/')
-                                            }
-                                        })
-                                })
-                        })
+            .then(result => {
+                const loggedUser = result.user;
+                console.log('here -->', loggedUser);
+                updateUserProfile(user.name)
+                    .then(() => {
+                        console.log('user profile updated successfully');
+                        // console.log('email', loggedUser.email);
+
+                        const userInfo = {
+                            name: user.name,
+                            email: user.email,
+                        }
+                        axios.post('/users', userInfo)
+                            .then(res => {
+                                console.log(res.data);
+                                if (res.data.insertedId) {
+                                    toast.success('User Created Successfully!')
+                                    navigate('/')
+                                }
+                            })
+                    })
+            })
             .catch(error => {
                 console.error(error);
             });
@@ -91,7 +93,7 @@ const Register = () => {
                     </div>
                     <div className="form-control mt-6">
                         <button className="btn btn-secondary text-white">Register</button>
-                        
+
                     </div>
                 </form>
                 <p className="text-center mb-4">Already have an account? Please <Link to={'/login'}><span className="text-pink-600 font-bold">Login</span></Link></p>

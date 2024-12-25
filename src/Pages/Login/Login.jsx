@@ -35,17 +35,36 @@ const Login = () => {
                     name: result.user.displayName,
                     email: result.user.email,
                 }
-                // Send user data to the server
-                axios.post('/users', userInfo)
-                    .then(res => {
-                        if (res.data.message === 'user already exist') {
-                            toast.success('Logged In Successfully!');
-                            navigate('/');
-                        } else {
-                            toast.success('User Created Successfully!');
-                            navigate('/');
-                        }
-                    })
+                console.log(userInfo.email);
+                if (userInfo.email === 'zakiaislam290@gmail.com') {
+                    const adminInfo = {
+                        name: result.user.displayName,
+                        email: result.user.email,
+                        role: 'admin',
+                    }
+                    axios.post('/users', adminInfo)
+                        .then(res => {
+                            if (res.data.message === 'user already exist') {
+                                toast.success('Logged In Successfully!');
+                                navigate('/');
+                            } else {
+                                toast.success('User Created Successfully!');
+                                navigate('/');
+                            }
+                        })
+                }
+                else {
+                    axios.post('/users', userInfo)
+                        .then(res => {
+                            if (res.data.message === 'user already exist') {
+                                toast.success('Logged In Successfully!');
+                                navigate('/');
+                            } else {
+                                toast.success('User Created Successfully!');
+                                navigate('/');
+                            }
+                        })
+                }
             })
             .catch(error => {
                 console.error(error);
