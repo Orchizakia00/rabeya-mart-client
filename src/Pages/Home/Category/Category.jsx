@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 
 import slider1 from '../../../assets/categories/rice.jpg'
 import slider2 from '../../../assets/categories/produce.jpg'
@@ -29,7 +29,11 @@ const Category = () => {
                 pagination={{
                     clickable: true,
                 }}
-                modules={[Pagination]}
+                autoplay={{
+                    delay: 2000, // Delay in milliseconds between slides
+                    disableOnInteraction: false, // Continue autoplay after user interactions
+                }}
+                modules={[Pagination, Autoplay]}
                 className="mySwiper"
             >
                 <SwiperSlide>
