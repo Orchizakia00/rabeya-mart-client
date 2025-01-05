@@ -5,6 +5,7 @@ import userImg from "../../assets/logo/user-icon.png"
 import useAuth from "../../Hooks/useAuth";
 import { FaCartPlus } from "react-icons/fa";
 import toast from "react-hot-toast";
+import useUsers from "../../Hooks/useUsers";
 
 
 
@@ -17,6 +18,9 @@ const Navbar = () => {
     };
 
     const { user } = useAuth();
+
+    const [allUsers] = useUsers();
+    console.log('allUsers', allUsers);
 
     const navLinks = <>
         <NavLink to={'/'}>
@@ -101,6 +105,9 @@ const Navbar = () => {
                                 tabIndex={0}
                                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                                 <li className="font-bold text-sm ml-3 mb-3">{user.displayName}</li>
+                                {
+                                    user.role === 'admin' && <li className="font-bold text-sm ml-3 mb-3">Dashboard</li>
+                                }
                                 <li><a onClick={handleLogout} className="">Logout</a></li>
                             </ul>
                         </div>
