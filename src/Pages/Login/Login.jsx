@@ -3,6 +3,8 @@ import { FcGoogle } from "react-icons/fc";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import loginAnime from "../../../src/assets/animations/login.json"
+import Lottie from "lottie-react";
 
 
 const Login = () => {
@@ -74,7 +76,8 @@ const Login = () => {
     return (
         <div className="flex my-10 w-[1200px] mx-auto bg-white">
             <div className="flex-1">
-                <img src="https://i.ibb.co/7GdMRPn/sign-page-abstract-concept-illustration-335657-2242.jpg" alt="" />
+                {/* <img src="https://i.ibb.co/7GdMRPn/sign-page-abstract-concept-illustration-335657-2242.jpg" alt="" /> */}
+                <Lottie animationData={loginAnime} loop={true} className="w-[500px] h-[500px] mt-10" />
             </div>
             <div className="mt-10 flex-1">
                 <h2 className="text-5xl text-center font-bold">Login Now</h2>
@@ -99,7 +102,7 @@ const Login = () => {
                         <button onClick={handleGoogleSignIn} className="btn mt-5"><FcGoogle></FcGoogle> Login with Google</button>
                     </div>
                 </form>
-                <p className="text-center">Do not have an account? Please <Link to={'/register'}><span className="text-pink-600 font-bold">Register</span></Link></p>
+                <p className="text-center mb-6">Do not have an account? Please <Link to={'/register'}><span className="text-pink-600 font-bold">Register</span></Link></p>
             </div>
         </div>
     );
