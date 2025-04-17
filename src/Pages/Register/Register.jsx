@@ -2,6 +2,8 @@ import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import registerAnime from "../../../src/assets/animations/register.json"
+import Lottie from "lottie-react";
 
 const Register = () => {
     const { createUser, updateUserProfile } = useAuth();
@@ -63,9 +65,10 @@ const Register = () => {
     }
 
     return (
-        <div className="flex my-10 w-[1200px] mx-auto bg-white">
+        <div className="flex items-center justify-center my-10 w-[1200px] mx-auto bg-white">
             <div className="flex-1">
-                <img src="https://i.ibb.co/DzjwVLx/user-verification-unauthorized-access-prevention-private-account-authentication-cyber-security-peopl.jpg" alt="" />
+                {/* <img src="https://i.ibb.co/DzjwVLx/user-verification-unauthorized-access-prevention-private-account-authentication-cyber-security-peopl.jpg" alt="" /> */}
+                <Lottie animationData={registerAnime} loop={true} className="w-[350px] h-[350px] mt-10 mx-auto" />
             </div>
             <div className="mt-10 flex-1">
                 <h2 className="text-5xl text-center font-bold">Register Now</h2>
@@ -92,11 +95,11 @@ const Register = () => {
                         </label>
                     </div>
                     <div className="form-control mt-6">
-                        <button className="btn btn-secondary text-white">Register</button>
+                        <button className="btn bg-orange-600 hover:bg-orange-700 text-white">Register</button>
 
                     </div>
                 </form>
-                <p className="text-center mb-4">Already have an account? Please <Link to={'/login'}><span className="text-pink-600 font-bold">Login</span></Link></p>
+                <p className="text-center mb-4">Already have an account? Please <Link to={'/login'}><span className="text-orange-600 font-bold">Login</span></Link></p>
             </div>
         </div>
     );
