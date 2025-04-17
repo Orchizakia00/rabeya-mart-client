@@ -106,7 +106,9 @@ const Navbar = () => {
                                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                                 <li className="font-bold text-sm ml-3 mb-3">{user.displayName}</li>
                                 {
-                                    user.role === 'admin' && <li className="font-bold text-sm ml-3 mb-3">Dashboard</li>
+                                    user.email === 'zakiaislam290@gmail.com' ? 
+                                    <li><Link to={'/dashboard'}><a className="">Dashboard</a></Link></li> : 
+                                    <li>no admin</li>
                                 }
                                 <li><a onClick={handleLogout} className="">Logout</a></li>
                             </ul>
