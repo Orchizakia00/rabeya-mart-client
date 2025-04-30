@@ -108,7 +108,7 @@ const Navbar = () => {
                                 {
                                     user.email === 'zakiaislam290@gmail.com' ? 
                                     <li><Link to={'/dashboard'}><a className="">Dashboard</a></Link></li> : 
-                                    <li>no admin</li>
+                                    <li className="pl-3">View Cart</li>
                                 }
                                 <li><a onClick={handleLogout} className="">Logout</a></li>
                             </ul>
